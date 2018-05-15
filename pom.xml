@@ -73,7 +73,7 @@
                         </goals>
                         <configuration>
                             <ramls>
-                                <raml>discovery/portal/va2msrv/va2.raml</raml>
+                                <raml>discovery/portal/va2msrv/va2Service.raml</raml>
                             </ramls>
                         </configuration>
                     </execution>

@@ -8,6 +8,9 @@
     "type": {
       "$ref": "MessageType"
     },
+    "isUser": {
+      "type": "boolean"
+    },
     "content": {
       "items": {
         "type": "string"
