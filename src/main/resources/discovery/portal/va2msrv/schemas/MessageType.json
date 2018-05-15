@@ -1,0 +1,9 @@
+{
+  "additionalProperties": false,
+  "javaInterfaces": [ "java.io.Serializable" ],
+  "javaType": "discovery.portal.va2msrv.schemas.MessageType",
+  "enum": [
+    "TEXT", "MULTIPLE_OPTION"
+  ],
+  "type": "string"
+}

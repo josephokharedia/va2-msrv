@@ -1,0 +1,14 @@
+application:
+  version: @project.version@
+
+server:
+  contextPath: /va2msrv
+  port: 8085
+
+raml:
+  controller:
+    enabled: true
+
+#logging:
+#  level:
+#    ROOT: DEBUG

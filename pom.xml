@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
+
+	<groupId>discovery.portal.va2-msrv</groupId>
+	<artifactId>va2-msrv</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>va2-msrv</name>
+	<description>va2-msrv with Spring Boot</description>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>discovery.portal</groupId>
+                <artifactId>raml-compiler</artifactId>
+                <version>2.0.2</version>
+                <executions>
+                    <execution>
+                        <id>raml</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <ramls>
+                                <raml>discovery/portal/va2msrv/va2.raml</raml>
+                            </ramls>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package</id>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>discovery.portal.raml</groupId>
+                            <artifactId>raml-util</artifactId>
+                            <type>jar</type>
+                            <includes>
+                                <include>api-console/**</include>
+                            </includes>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+
+        </plugins>
+	</build>
+
+    <!--<scm>-->
+        <!--<connection>ssh://git@dhpscgit01.discsrv.co.za:7999/dhsap/young-families-msrv.git</connection>-->
+    <!--</scm>-->
+
+    <distributionManagement>
+        <repository>
+            <id>${dist-repository-id}</id>
+            <url>${dist-repository}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>${snapshot-repository-id}</id>
+            <url>${snapshot-repository}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

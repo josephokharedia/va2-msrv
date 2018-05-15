@@ -1,0 +1,39 @@
+#%RAML 0.8
+
+title: Virtual Assistance service
+version: 1.0.0
+mediaType: application/json
+
+schemas:
+    - Request:          !include ../schemas/Request.json
+    - Response:         !include ../schemas/Response.json
+    - MessageType:      !include ../schemas/MessageType.json
+    - Message:          !include ../schemas/Message.json
+
+/send:
+    post:
+        description: |
+            Test endpoint
+        body:
+            schema: Request
+            example: |
+                {
+                    "text": "Hello"
+                }
+        responses:
+            200:
+                body:
+                    application/json:
+                        schema: Response
+                        example: |
+                            [
+                                {
+                                    "type": "TEXT",
+                                    "isUser": false,
+                                    "isLoading": false,
+                                    "content": [
+                                        "Hi,",
+                                        "How can I help you?"
+                                    ]
+                                }
+                            ]

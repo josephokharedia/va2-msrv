@@ -1,0 +1,16 @@
+{
+  "additionalProperties": false,
+  "javaInterfaces": [
+    "java.io.Serializable"
+  ],
+  "javaType": "discovery.portal.va2msrv.schemas.Response",
+  "properties": {
+    "messages": {
+      "items": {
+        "$ref": "Message"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
